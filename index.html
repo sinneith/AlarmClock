@@ -5,13 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>watch</title>
-    <link rel="stylesheet" href="style.css" />
-    <script async src="app.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script async src="js/clock.js"></script>
   </head>
   <body>
-    <div id="watch">
-      <div id="number"></div>
+    <div id="clock">
+      <div id="number">
+        <span id="hour"></span>:<span id="minute"></span>:<span
+          id="second"
+        ></span>
+      </div>
       <div id="text"></div>
+    </div>
+    <div id="button_wrap">
+      <button id="alarm">Alarm</button>
+      <button id="reset">Reset</button>
+    </div>
+    <div id="popup" style="display: none">
+      <span id="close">X</span>
+      <select id="setHour"></select>
+      :
+      <select id="setMinute"></select>
+      <span id="setBtn">done!</span>
     </div>
   </body>
 </html>
