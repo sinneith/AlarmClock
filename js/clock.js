@@ -4,12 +4,10 @@ const minuteDiv = document.getElementById("minute");
 const secondDiv = document.getElementById("second");
 const text = document.getElementById("text");
 
-//////////
-
 const alarmBtn = document.getElementById("alarm");
 const closeBtn = document.getElementById("close");
 const popup = document.getElementById("popup");
-const setHour = document.getElementById("setHour"); //select
+const setHour = document.getElementById("setHour");
 const setMinute = document.getElementById("setMinute");
 const setBtn = document.getElementById("setBtn");
 
@@ -26,8 +24,6 @@ for (let j = 0; j < 60; j++) {
   minuteOpt.innerText = String(j).padStart(2, "0");
   setMinute.appendChild(minuteOpt);
 }
-
-//////////
 
 function startTimer() {
   const now = new Date();
@@ -55,9 +51,12 @@ function setAlarm() {
   const alHour = setHour.value;
   const alMinute = setMinute.value;
 
-  if (hourDiv.innerText === alHour && minuteDiv.innerText === alMinute) {
-    console.log("alarm!");
-  }
+  const handleAlarm = setInterval(function () {
+    if (alHour === hourDiv.innerText && alMinute === minuteDiv.innerText) {
+      alert("alarm!");
+      clearInterval(handleAlarm);
+    }
+  }, 100);
 }
 
 setInterval(startTimer, 100);
