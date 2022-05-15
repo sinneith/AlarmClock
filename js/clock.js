@@ -5,11 +5,15 @@ const secondDiv = document.getElementById("second");
 const text = document.getElementById("text");
 
 const alarmBtn = document.getElementById("alarm");
+const resetBtn = document.getElementById("reset");
+const cancelBtn = document.getElementById("cancel");
 const closeBtn = document.getElementById("close");
 const popup = document.getElementById("popup");
 const setHour = document.getElementById("setHour");
 const setMinute = document.getElementById("setMinute");
 const setBtn = document.getElementById("setBtn");
+
+let timeArr = [];
 
 for (let i = 1; i < 25; i++) {
   const hourOpt = document.createElement("option");
@@ -46,20 +50,65 @@ function startTimer() {
   text.innerText = ampm;
 }
 
-function setAlarm() {
+function setAlarm(event) {
   popup.style.display = "none";
-  const alHour = setHour.value;
-  const alMinute = setMinute.value;
 
-  const handleAlarm = setInterval(function () {
-    if (alHour === hourDiv.innerText && alMinute === minuteDiv.innerText) {
-      alert("alarm!");
-      clearInterval(handleAlarm);
-    }
-  }, 100);
+  let alarmObj;
+
+  if (event.target.innerText === "Cancel") {
+    alarmObj = {
+      hour: false,
+      minute: false,
+    };
+  } else {
+    alarmObj = {
+      hour: setHour.value,
+      minute: setMinute.value,
+    };
+  }
+  timeArr = alarmObj;
+  saveTime();
+  ringAlarm();
 }
 
-setInterval(startTimer, 100);
+function saveTime() {
+  localStorage.setItem("time", JSON.stringify(timeArr));
+}
+
+function ringAlarm() {
+  const handleAlarm = setInterval(function () {
+    let setTimeHour;
+    let setTimeMinute;
+
+    const checkValue = setInterval(function () {
+      let setTime = JSON.parse(localStorage.getItem("time"));
+      setTimeHour = setTime.hour;
+      setTimeMinute = setTime.minute;
+
+      if (setTimeHour === false) {
+        clearInterval(checkValue);
+        clearInterval(handleAlarm);
+      } else if (
+        setTimeHour === hourDiv.innerText &&
+        setTimeMinute === minuteDiv.innerText
+      ) {
+        alert("alarm!");
+        clearInterval(handleAlarm);
+        clearInterval(checkValue);
+      } else {
+        clearInterval(handleAlarm);
+      }
+    }, 1000);
+    clearInterval(handleAlarm);
+  }, 1000);
+}
+
+setInterval(startTimer, 1000);
 alarmBtn.addEventListener("click", () => (popup.style.display = "block"));
 closeBtn.addEventListener("click", () => (popup.style.display = "none"));
 setBtn.addEventListener("click", setAlarm);
+resetBtn.addEventListener("click", function () {
+  popup.style.display = "block";
+  setAlarm;
+});
+cancelBtn.addEventListener("click", setAlarm);

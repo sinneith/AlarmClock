@@ -90,8 +90,8 @@ body {
   font-size: 30px;
   padding: 10px 20px;
 }
-#button_wrap button:first-child {
-  margin-right: 10px;
+#button_wrap #reset {
+  margin: 0 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
