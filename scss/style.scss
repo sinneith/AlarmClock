@@ -75,17 +75,75 @@ body {
     }
   }
 }
+#alarmPopup {
+  background-color: #fff;
+  font-size: 40px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  .popupWrap {
+    width: 470px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    #check {
+      all: unset;
+      cursor: pointer;
+      padding: 10px 20px;
+      margin-top: 60px;
+      font-size: 26px;
+      border: 1px solid black;
+      transition: 0.3s;
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+  }
+}
 #button_wrap {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   button {
+    border-radius: 50px;
     cursor: pointer;
     font-size: 30px;
-    padding: 10px 20px;
+    padding: 15px 30px;
+    transition: 0.2s;
   }
   #reset {
     margin: 0 10px;
+  }
+}
+
+@keyframes blink {
+  50% {
+    background-color: rgb(164, 48, 48);
+  }
+}
+.blink {
+  animation: blink 1.5s step-end infinite;
+}
+.darkMode {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}
+.lightMode {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  &:hover {
+    background-color: black;
+    color: white;
   }
 }

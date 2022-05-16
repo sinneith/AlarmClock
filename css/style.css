@@ -79,6 +79,36 @@ body {
   color: white;
 }
 
+#alarmPopup {
+  background-color: #fff;
+  font-size: 40px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+#alarmPopup .popupWrap {
+  width: 470px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#alarmPopup .popupWrap #check {
+  all: unset;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-top: 60px;
+  font-size: 26px;
+  border: 1px solid black;
+  transition: 0.3s;
+}
+#alarmPopup .popupWrap #check:hover {
+  background-color: black;
+  color: white;
+}
+
 #button_wrap {
   position: absolute;
   top: 50%;
@@ -86,12 +116,43 @@ body {
   transform: translate(-50%, -50%);
 }
 #button_wrap button {
+  border-radius: 50px;
   cursor: pointer;
   font-size: 30px;
-  padding: 10px 20px;
+  padding: 15px 30px;
+  transition: 0.2s;
 }
 #button_wrap #reset {
   margin: 0 10px;
+}
+
+@keyframes blink {
+  50% {
+    background-color: #a43030;
+  }
+}
+.blink {
+  animation: blink 1.5s step-end infinite;
+}
+
+.darkMode {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+}
+.darkMode:hover {
+  background-color: white;
+  color: black;
+}
+
+.lightMode {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+.lightMode:hover {
+  background-color: black;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

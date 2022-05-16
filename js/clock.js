@@ -30,10 +30,26 @@ function startTimer() {
     ampm = "☀︎";
     document.body.style.backgroundColor = "white";
     clock.style.color = "black";
+    popup.style.border = "1px solid black";
+    alarmPopup.style.border = "1px solid black";
+    alarmBtn.classList.remove("darkMode");
+    resetBtn.classList.remove("darkMode");
+    cancelBtn.classList.remove("darkMode");
+    alarmBtn.classList.add("lightMode");
+    resetBtn.classList.remove("lightMode");
+    cancelBtn.classList.remove("lightMode");
   } else {
     ampm = "☽";
     document.body.style.backgroundColor = "black";
     clock.style.color = "white";
+    popup.style.border = "1px solid white";
+    alarmPopup.style.border = "1px solid white";
+    alarmBtn.classList.remove("lightMode");
+    resetBtn.classList.remove("lightMode");
+    cancelBtn.classList.remove("lightMode");
+    alarmBtn.classList.add("darkMode");
+    resetBtn.classList.add("darkMode");
+    cancelBtn.classList.add("darkMode");
   }
   hourDiv.innerText = hour;
   minuteDiv.innerText = minute;

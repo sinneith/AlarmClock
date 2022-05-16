@@ -3,7 +3,12 @@ const resetBtn = document.getElementById("reset");
 const cancelBtn = document.getElementById("cancel");
 const alarmBtn = document.getElementById("alarm");
 const closeBtn = document.getElementById("close");
+const checkBtn = document.getElementById("check");
+
 const popup = document.getElementById("popup");
+const alarmPopup = document.getElementById("alarmPopup");
+const audio = new Audio();
+audio.src = "audio.mp3";
 
 let timeArr = [];
 
@@ -49,7 +54,7 @@ function ringAlarm() {
         setTimeHour === hourDiv.innerText &&
         setTimeMinute === minuteDiv.innerText
       ) {
-        alert("alarm!");
+        alertTime();
         clearInterval(handleAlarm);
         clearInterval(checkValue);
       } else {
@@ -60,14 +65,29 @@ function ringAlarm() {
   }, 1000);
 }
 
+function alertTime() {
+  alarmPopup.style.display = "block";
+  audio.play();
+  document.body.classList.add("blink");
+  timeArr = {
+    hour: false,
+    minute: false,
+  };
+  saveTime();
+}
+
 alarmBtn.addEventListener("click", () => (popup.style.display = "block"));
 closeBtn.addEventListener("click", () => (popup.style.display = "none"));
 setBtn.addEventListener("click", setAlarm);
+cancelBtn.addEventListener("click", setAlarm);
 resetBtn.addEventListener("click", function () {
   popup.style.display = "block";
   setAlarm;
 });
-cancelBtn.addEventListener("click", setAlarm);
+checkBtn.addEventListener("click", function () {
+  alarmPopup.style.display = "none";
+  document.body.classList.remove("blink");
+});
 
 if (
   localStorage.length !== 0 &&
