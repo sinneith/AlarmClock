@@ -36,8 +36,8 @@ function startTimer() {
     resetBtn.classList.remove("darkMode");
     cancelBtn.classList.remove("darkMode");
     alarmBtn.classList.add("lightMode");
-    resetBtn.classList.remove("lightMode");
-    cancelBtn.classList.remove("lightMode");
+    resetBtn.classList.add("lightMode");
+    cancelBtn.classList.add("lightMode");
   } else {
     ampm = "☽";
     document.body.style.backgroundColor = "black";
